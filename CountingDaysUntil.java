@@ -7,8 +7,6 @@ import java.util.Calendar;
  * 
  * (Going to come back to this in the future with a better option as a friend told me about the Date Type)
  * 
- * Initial Commit - 11 Days out (leap years not included)
- * 
  */
 public class CountingDaysUntil {
 	/*
@@ -34,13 +32,19 @@ public class CountingDaysUntil {
 		for (int i=0; i<currentMonth; i++) {
 			currentdayspast = currentdayspast + daysinMonths[i];
 		}
-		currentdayspast = 365 - (currentdayspast + currentDay); //How many days until the end of this year
+		int daysleft = 365 - (currentdayspast + currentDay); //How many days until the end of this year
 		
 		int numberofYears = inputYear-currentYear-1;
-		dayCount = currentdayspast + (numberofYears*yearLength); //Days in the year from the end of this year to the start of the year in question.
-		
+		int daysattheend = 0; //Counts the days in the year that im counting.
+		dayCount = daysleft + (numberofYears*yearLength); //Days in the year from the end of this year to the start of the year in question.
+		for (int i=0; i<inputMonth-1; i++) {
+			daysattheend = daysattheend + daysinMonths[i];
+		}
+		daysattheend = daysattheend + inputDay+1;
+		dayCount = daysleft + (numberofYears*yearLength) + daysattheend;
 		System.out.println("The Date you chose is: " + inputDay + "/" + inputMonth + "/" + inputYear);
 		System.out.println("The Number of days until then is: " + dayCount);
+		
 		
 	}
 
