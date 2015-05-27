@@ -10,7 +10,6 @@ public class StandardDeviation {
  */
 	
 	public static void main(String[] args){
-		int Mean = 0;
 		int Variance;
 		int Sumdifferencesquared = 0;
 		int[] argsArray = new int[args.length];
@@ -24,13 +23,14 @@ public class StandardDeviation {
 		for (int i: argsArray){
 			meanCount =  meanCount + i;
 		}
-		Mean = meanCount/(argsArray.length-1);
+		int Mean = meanCount/(argsArray.length);
 		argsIndex = 0;
 		for (int i: argsArray){
 			int difference = i - Mean;
-			Sumdifferencesquared = Sumdifferencesquared + difference;
+			Sumdifferencesquared = Sumdifferencesquared + (difference*difference);
 		}
-		Variance = Sumdifferencesquared/(argsArray.length-1);
+
+		Variance = Sumdifferencesquared/(argsArray.length);
 		double StandardDeviation = Math.sqrt(Variance);
 		System.out.println(StandardDeviation);
 	}
